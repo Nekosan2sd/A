@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学習ポータル</title>
 
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Segoe UI",sans-serif;
+  background:#66758b;
+  min-height:100vh;
+}
+
+/* ログイン画面 */
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.portal{
+  width:min(1000px,90%);
+  height:500px;
+  display:flex;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.left{
+  width:50%;
+  background:#aab0bd;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+}
+
+.left h1{
+  font-size:3rem;
+  margin-bottom:30px;
+  font-weight:300;
+  letter-spacing:3px;
+}
+
+.left p{
+  font-size:1.2rem;
+  line-height:1.8;
+}
+
+.right{
+  width:50%;
+  background:white;
+  padding:60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.logo{
+  font-size:2rem;
+  font-weight:bold;
+  color:#4b5f78;
+  margin-bottom:40px;
+}
+
+.label{
+  color:#7c8595;
+  margin-bottom:12px;
+}
+
+input{
+  width:100%;
+  border:none;
+  border-bottom:2px solid #ddd;
+  padding:15px 5px;
+  font-size:1rem;
+  outline:none;
+}
+
+button{
+  margin-top:35px;
+  border:none;
+  padding:15px;
+  border-radius:30px;
+  background:#6c90ff;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.2s;
+}
+
+button:hover{
+  background:#557bff;
+}
+
+#error{
+  margin-top:15px;
+  color:#d33;
+  display:none;
+}
+
+/* 時計画面 */
+#clockScreen{
+  display:none;
+  width:100vw;
+  height:100vh;
+  background:#000;
+  color:#00ff00;
+  justify-content:center;
+  align-items:center;
+}
+
+#clock{
+  font-family:monospace;
+  font-size:clamp(4rem,12vw,10rem);
+  text-shadow:
+    0 0 10px #00ff00,
+    0 0 20px #00ff00;
+}
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="portal">
+    <div class="left">
+      <h1>LEARNING</h1>
+      <p>
+        学習ポータルシステム<br>
+        学校から配布された<br>
+        アクセスコードを入力してください
+      </p>
+    </div>
+
+    <div class="right">
+      <div class="logo">📘 学習ポータル</div>
+
+      <div class="label">
+        アクセスコード
+      </div>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="コードを入力"
+      >
+
+      <button onclick="login()">
+        学習開始
+      </button>
+
+      <div id="error">
+        アクセスコードが違います
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="clockScreen">
+  <div id="clock">00:00:00</div>
+</div>
+
+<script>
+const PASSWORD = "0423";
+
+const titles = [
+  "Google Classroom",
+  "Google ドキュメント",
+  "Google ドライブ",
+  "Google スライド",
+  "Google フォーム",
+  "学習記録",
+  "提出課題",
+  "理科レポート",
+  "数学課題",
+  "英語ワーク",
+  "まなびポータル",
+  "オンライン教材"
+];
+
+function login() {
+  const pass =
+    document.getElementById("password").value;
+
+  if(pass !== PASSWORD){
+    document.getElementById("error").style.display =
+      "block";
+    return;
+  }
+
+  document.getElementById("loginScreen").style.display =
+    "none";
+
+  document.getElementById("clockScreen").style.display =
+    "flex";
+
+  startSystem();
+}
+
+document
+  .getElementById("password")
+  .addEventListener("keydown", e => {
+    if(e.key === "Enter"){
+      login();
+    }
+  });
+
+function startSystem() {
+
+  updateClock();
+
+  setInterval(updateClock,1000);
+
+  setInterval(updateTitle,5000);
+}
+
+function updateClock(){
+  const now = new Date();
+
+  const h =
+    String(now.getHours()).padStart(2,"0");
+
+  const m =
+    String(now.getMinutes()).padStart(2,"0");
+
+  const s =
+    String(now.getSeconds()).padStart(2,"0");
+
+  document.getElementById("clock").textContent =
+    `${h}:${m}:${s}`;
+}
+
+function updateTitle(){
+  document.title =
+    titles[
+      Math.floor(Math.random()*titles.length)
+    ];
+}
+</script>
+
+</body>
+</html>
