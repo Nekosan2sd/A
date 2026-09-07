@@ -2,252 +2,361 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>学習ポータル</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  font-family:"Segoe UI",sans-serif;
-  background:#66758b;
-  min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,
+    "Segoe UI",sans-serif;
 }
 
 /* ログイン画面 */
+
 #loginScreen{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    min-height:100dvh;
+    background:#6a768b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
 .portal{
-  width:min(1000px,90%);
-  height:500px;
-  display:flex;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+    width:min(1000px,100%);
+    min-height:520px;
+
+    display:flex;
+    overflow:hidden;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
 }
 
 .left{
-  width:50%;
-  background:#aab0bd;
-  color:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px;
+    flex:1;
+    background:#a9b0bd;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
 }
 
 .left h1{
-  font-size:3rem;
-  margin-bottom:30px;
-  font-weight:300;
-  letter-spacing:3px;
+    font-size:3rem;
+    font-weight:300;
+    letter-spacing:4px;
+
+    margin-bottom:30px;
 }
 
 .left p{
-  font-size:1.2rem;
-  line-height:1.8;
+    font-size:1.15rem;
+    line-height:2;
 }
 
 .right{
-  width:50%;
-  background:white;
-  padding:60px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+    flex:1;
+    background:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:50px;
 }
 
 .logo{
-  font-size:2rem;
-  font-weight:bold;
-  color:#4b5f78;
-  margin-bottom:40px;
+    font-size:2rem;
+    font-weight:700;
+    color:#52647d;
+    margin-bottom:50px;
 }
 
 .label{
-  color:#7c8595;
-  margin-bottom:12px;
+    color:#6b7484;
+    margin-bottom:10px;
 }
 
 input{
-  width:100%;
-  border:none;
-  border-bottom:2px solid #ddd;
-  padding:15px 5px;
-  font-size:1rem;
-  outline:none;
+    border:none;
+    border-bottom:2px solid #ddd;
+
+    padding:15px 5px;
+    font-size:1rem;
+
+    outline:none;
 }
 
 button{
-  margin-top:35px;
-  border:none;
-  padding:15px;
-  border-radius:30px;
-  background:#6c90ff;
-  color:white;
-  font-size:1rem;
-  cursor:pointer;
-  transition:.2s;
+    margin-top:30px;
+
+    border:none;
+
+    background:#7e95ff;
+
+    color:white;
+
+    padding:16px;
+    border-radius:30px;
+
+    font-size:1rem;
+
+    cursor:pointer;
 }
 
-button:hover{
-  background:#557bff;
+button:active{
+    transform:scale(.98);
 }
 
 #error{
-  margin-top:15px;
-  color:#d33;
-  display:none;
+    display:none;
+    color:#d33;
+    margin-top:15px;
 }
 
 /* 時計画面 */
+
 #clockScreen{
-  display:none;
-  width:100vw;
-  height:100vh;
-  background:#000;
-  color:#00ff00;
-  justify-content:center;
-  align-items:center;
+    display:none;
+
+    width:100vw;
+    min-height:100dvh;
+
+    background:#000;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
 }
 
 #clock{
-  font-family:monospace;
-  font-size:clamp(4rem,12vw,10rem);
-  text-shadow:
+    color:#00ff00;
+
+    font-family:monospace;
+
+    font-size:clamp(4rem,12vw,10rem);
+
+    text-shadow:
     0 0 10px #00ff00,
-    0 0 20px #00ff00;
+    0 0 20px #00ff00,
+    0 0 40px #00ff00;
+}
+
+#url{
+    margin-top:24px;
+
+    color:#00ffff;
+
+    max-width:90vw;
+
+    text-align:center;
+
+    word-break:break-all;
+
+    font-size:clamp(.8rem,1.6vw,1.2rem);
+
+    padding:0 15px;
 }
 </style>
 </head>
 <body>
 
 <div id="loginScreen">
-  <div class="portal">
-    <div class="left">
-      <h1>LEARNING</h1>
-      <p>
-        学習ポータルシステム<br>
-        学校から配布された<br>
-        アクセスコードを入力してください
-      </p>
+
+    <div class="portal">
+
+        <div class="left">
+
+            <h1>LEARNING</h1>
+
+            <p>
+                学習ポータルシステム<br>
+                学校から配布された<br>
+                アクセスコードを入力してください
+            </p>
+
+        </div>
+
+        <div class="right">
+
+            <div class="logo">
+                📘 学習ポータル
+            </div>
+
+            <div class="label">
+                アクセスコード
+            </div>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="コードを入力">
+
+            <button onclick="login()">
+                学習開始
+            </button>
+
+            <div id="error">
+                アクセスコードが違います
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="right">
-      <div class="logo">📘 学習ポータル</div>
-
-      <div class="label">
-        アクセスコード
-      </div>
-
-      <input
-        type="password"
-        id="password"
-        placeholder="コードを入力"
-      >
-
-      <button onclick="login()">
-        学習開始
-      </button>
-
-      <div id="error">
-        アクセスコードが違います
-      </div>
-    </div>
-  </div>
 </div>
 
 <div id="clockScreen">
-  <div id="clock">00:00:00</div>
+
+    <div id="clock">
+        00:00:00
+    </div>
+
+    <div id="url">
+        Loading...
+    </div>
+
 </div>
 
 <script>
+
 const PASSWORD = "0423";
 
 const titles = [
-  "Google Classroom",
-  "Google ドキュメント",
-  "Google ドライブ",
-  "Google スライド",
-  "Google フォーム",
-  "学習記録",
-  "提出課題",
-  "理科レポート",
-  "数学課題",
-  "英語ワーク",
-  "まなびポータル",
-  "オンライン教材"
+    "学習ポータル",
+    "学習記録",
+    "提出課題",
+    "教材閲覧",
+    "確認テスト",
+    "学習管理",
+    "授業メモ",
+    "自主学習",
+    "課題一覧"
 ];
 
-function login() {
-  const pass =
-    document.getElementById("password").value;
+function login(){
 
-  if(pass !== PASSWORD){
-    document.getElementById("error").style.display =
-      "block";
-    return;
-  }
+    const value =
+        document.getElementById("password").value;
 
-  document.getElementById("loginScreen").style.display =
-    "none";
+    if(value !== PASSWORD){
 
-  document.getElementById("clockScreen").style.display =
-    "flex";
+        document.getElementById("error").style.display =
+            "block";
 
-  startSystem();
+        return;
+    }
+
+    document.getElementById("loginScreen").style.display =
+        "none";
+
+    document.getElementById("clockScreen").style.display =
+        "flex";
+
+    startSystem();
 }
 
 document
-  .getElementById("password")
-  .addEventListener("keydown", e => {
-    if(e.key === "Enter"){
-      login();
+.getElementById("password")
+.addEventListener("keydown",e=>{
+
+    if(e.key==="Enter"){
+        login();
     }
-  });
 
-function startSystem() {
+});
 
-  updateClock();
+function startSystem(){
 
-  setInterval(updateClock,1000);
+    updateClock();
+    updateUrlDisplay();
 
-  setInterval(updateTitle,5000);
+    setInterval(updateClock,1000);
+
+    setInterval(changeUrl,25);
+
+    setInterval(updateTitle,5000);
 }
 
 function updateClock(){
-  const now = new Date();
 
-  const h =
+    const now = new Date();
+
+    const h =
     String(now.getHours()).padStart(2,"0");
 
-  const m =
+    const m =
     String(now.getMinutes()).padStart(2,"0");
 
-  const s =
+    const s =
     String(now.getSeconds()).padStart(2,"0");
 
-  document.getElementById("clock").textContent =
-    `${h}:${m}:${s}`;
+    document.getElementById("clock").textContent =
+        `${h}:${m}:${s}`;
 }
 
 function updateTitle(){
-  document.title =
+
+    document.title =
     titles[
-      Math.floor(Math.random()*titles.length)
+        Math.floor(
+            Math.random()*titles.length
+        )
     ];
 }
+
+function changeUrl(){
+
+    const time =
+        Date.now().toString(36);
+
+    const random =
+        Math.random()
+            .toString(36)
+            .substring(2,10);
+
+    const subject =
+    [
+        "math",
+        "english",
+        "science",
+        "social",
+        "japanese"
+    ][Math.floor(Math.random()*5)];
+
+    const url =
+    `${location.pathname}?s=${subject}&t=${time}&r=${random}`;
+
+    history.pushState({}, "", url);
+
+    updateUrlDisplay();
+}
+
+function updateUrlDisplay(){
+
+    document.getElementById("url").textContent =
+    location.href;
+}
+
 </script>
 
 </body>
