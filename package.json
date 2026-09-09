@@ -1,0 +1,11 @@
+{
+  "name": "tamayoke-v0.34",
+  "version": "0.34.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
